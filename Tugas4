@@ -1,0 +1,135 @@
+import java.util.Scanner;
+
+public class FindEvenNumbers {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== PROGRAM MENCARI ELEMEN GANDA PADA ARRAY ===");
+            System.out.println("1. Array 1D");
+            System.out.println("2. Array 2D");
+            System.out.println("0. Keluar");
+            System.out.print("Pilihan Anda: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    processOneDimensionalArray(scanner);
+                    break;
+                case 2:
+                    processTwoDimensionalArray(scanner);
+                    break;
+                case 0:
+                    System.out.println("Terima kasih telah menggunakan program ini!");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid, silakan pilih lagi.");
+            }
+        } while (choice != 0);
+
+        scanner.close();
+    }
+
+    private static void processOneDimensionalArray(Scanner scanner) {
+        System.out.print("Masukkan ukuran array 1D: ");
+        int size = scanner.nextInt();
+        
+        int[] array = new int[size];
+        
+        System.out.println("Masukkan elemen-elemen array:");
+        for (int i = 0; i < size; i++) {
+            System.out.print("Elemen ke-" + i + ": ");
+            array[i] = scanner.nextInt();
+        }
+        
+        // Display the array
+        System.out.print("Array yang dimasukkan: [");
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i]);
+            if (i < size - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+        
+        // Find and display even numbers
+        findEvenNumbers1D(array);
+    }
+
+    private static void findEvenNumbers1D(int[] array) {
+        int evenCount = 0;
+        
+        System.out.println("\nMencari elemen ganda (bilangan genap):");
+        
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                evenCount++;
+                System.out.println("Elemen ganda " + evenCount + ": " + array[i]);
+                System.out.println("Lokasi: [" + i + "]");
+            }
+        }
+        
+        if (evenCount == 0) {
+            System.out.println("Tidak ada elemen ganda (bilangan genap) dalam array.");
+        } else {
+            System.out.println("Total elemen ganda: " + evenCount);
+        }
+    }
+
+    private static void processTwoDimensionalArray(Scanner scanner) {
+        System.out.print("Masukkan jumlah baris array 2D: ");
+        int rows = scanner.nextInt();
+        
+        System.out.print("Masukkan jumlah kolom array 2D: ");
+        int cols = scanner.nextInt();
+        
+        int[][] array = new int[rows][cols];
+        
+        System.out.println("Masukkan elemen-elemen array:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("Elemen [" + i + "][" + j + "]: ");
+                array[i][j] = scanner.nextInt();
+            }
+        }
+        
+        // Display the array
+        System.out.println("Array yang dimasukkan:");
+        for (int i = 0; i < rows; i++) {
+            System.out.print("[");
+            for (int j = 0; j < cols; j++) {
+                System.out.print(array[i][j]);
+                if (j < cols - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+        }
+        
+        // Find and display even numbers
+        findEvenNumbers2D(array);
+    }
+
+    private static void findEvenNumbers2D(int[][] array) {
+        int evenCount = 0;
+        
+        System.out.println("\nMencari elemen ganda (bilangan genap):");
+        
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] % 2 == 0) {
+                    evenCount++;
+                    System.out.println("Elemen ganda " + evenCount + ": " + array[i][j]);
+                    System.out.println("Lokasi: [" + i + "][" + j + "]");
+                }
+            }
+        }
+        
+        if (evenCount == 0) {
+            System.out.println("Tidak ada elemen ganda (bilangan genap) dalam array.");
+        } else {
+            System.out.println("Total elemen ganda: " + evenCount);
+        }
+    }
+}    
